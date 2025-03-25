@@ -1,0 +1,68 @@
+// Mock product data
+export const mockProducts = [
+    {
+      id: 1,
+      name: "Wireless Headphones",
+      price: 129.99,
+      image: "https://img.freepik.com/premium-photo/wireless-headphones-hd-8k-wallpaper-stock-photographic-image_853645-35559.jpg",
+      category: "Electronics",
+      description: "High-quality wireless headphones with noise cancellation.",
+    },
+    {
+      id: 2,
+      name: "Smart Watch",
+      price: 199.99,
+      image: "https://m.media-amazon.com/images/I/613qFCwaEnL._SL1500_.jpg",
+      category: "Electronics",
+      description: "Track your fitness and stay connected with this smart watch.",
+    },
+    {
+      id: 3,
+      name: "Running Shoes",
+      price: 89.99,
+      image: "https://wallpaperaccess.com/full/5093053.jpg",
+      category: "Sports",
+      description: "Comfortable running shoes with excellent support.",
+    },
+    {
+      id: 4,
+      name: "Coffee Maker",
+      price: 59.99,
+      image: "https://images.philips.com/is/image/PhilipsConsumer/HD7434_20-IMS-en_IN?$jpglarge$&wid=1250",
+      category: "Home",
+      description: "Brew delicious coffee with this easy-to-use coffee maker.",
+    },
+    {
+      id: 5,
+      name: "Backpack",
+      price: 49.99,
+      image: "https://img.freepik.com/premium-photo/hiking-backpack-hd-8k-wallpaper-stock-photographic-image_677426-7051.jpg",
+      category: "Fashion",
+      description: "Durable backpack with multiple compartments for all your needs.",
+    },
+    {
+      id: 6,
+      name: "Smartphone",
+      price: 699.99,
+      image: "https://purepng.com/public/uploads/large/purepng.com-android-smartphonepersonal-computersmartphonemobile-operating-systemcellular-phoneandroid-17015283912796apux.png",
+      category: "Electronics",
+      description: "Latest smartphone with advanced camera and long battery life.",
+    },
+    {
+      id: 7,
+      name: "Yoga Mat",
+      price: 29.99,
+      image: "https://www.protekgr.com/wp-content/uploads/2015/02/0.25-Purpul.jpg",
+      category: "Sports",
+      description: "Non-slip yoga mat for comfortable workouts.",
+    },
+    {
+      id: 8,
+      name: "Desk Lamp",
+      price: 34.99,
+      image: "https://c1.wallpaperflare.com/preview/283/233/115/night-table-lamp-light-bedside-table-lighting.jpg",
+      category: "Home",
+      description: "Adjustable desk lamp with multiple brightness levels.",
+    },
+  ]
+  
