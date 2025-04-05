@@ -1,19 +1,18 @@
 
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { useCart } from "./contexts/CartContext"
+import { useSelector } from "react-redux"
+import CurrencySelector from "./CurrencySelector"
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const { items } = useCart()
+  const cartItems = useSelector((state) => state.cart.items)
 
-  const cartItemsCount = items.reduce((total, item) => total + item.quantity, 0)
+  const cartItemsCount = cartItems.reduce((total, item) => total + item.quantity, 0)
 
   return (
-    // <header className="bg-transparent backdrop-blur-md bg-purple-200/60 shadow-sm sticky top-0 z-10">
-      <header className="bg-purple-200/40 backdrop-blur-md shadow-sm sticky top-0 z-10">
-
+    <header className="bg-purple-200/40 backdrop-blur-md shadow-sm sticky top-0 z-10">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -43,6 +42,9 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center space-x-1 sm:space-x-4">
+            {/* Currency Selector */}
+            <CurrencySelector />
+
             {isSearchOpen ? (
               <div className="flex items-center bg-gray-100 rounded-md px-3 py-1.5 w-full sm:w-auto">
                 <input
@@ -66,7 +68,7 @@ const Navbar = () => {
             ) : (
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 text-gray-700 hover:text-blue-600 transition"
+                className="p-2 text-gray-700 hover:text-purple-600 transition"
                 aria-label="Search"
               >
                 <svg
@@ -86,7 +88,7 @@ const Navbar = () => {
               </button>
             )}
 
-            <Link to="/cart" className="relative p-2 text-gray-700 hover:text-blue-600 transition" aria-label="Cart">
+            <Link to="/cart" className="relative p-2 text-gray-700 hover:text-purple-600 transition" aria-label="Cart">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -102,7 +104,7 @@ const Navbar = () => {
                 />
               </svg>
               {cartItemsCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {cartItemsCount}
                 </span>
               )}
@@ -110,7 +112,7 @@ const Navbar = () => {
 
             <Link
               to="/account"
-              className="p-2 hidden sm:block text-gray-700 hover:text-blue-600 transition"
+              className="p-2 hidden sm:block text-gray-700 hover:text-purple-600 transition"
               aria-label="Account"
             >
               <svg
@@ -130,7 +132,7 @@ const Navbar = () => {
             </Link>
 
             <button
-              className="md:hidden p-2 text-gray-700 hover:text-blue-600 transition"
+              className="md:hidden p-2 text-gray-700 hover:text-purple-600 transition"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
@@ -166,7 +168,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/"
-                  className="block px-2 py-1 text-gray-700 hover:text-blue-600 transition"
+                  className="block px-2 py-1 text-gray-700 hover:text-purple-600 transition"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Home
@@ -175,7 +177,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/products"
-                  className="block px-2 py-1 text-gray-700 hover:text-blue-600 transition"
+                  className="block px-2 py-1 text-gray-700 hover:text-purple-600 transition"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Products
@@ -184,7 +186,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/categories"
-                  className="block px-2 py-1 text-gray-700 hover:text-blue-600 transition"
+                  className="block px-2 py-1 text-gray-700 hover:text-purple-600 transition"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Categories
@@ -193,11 +195,16 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/account"
-                  className="block px-2 py-1 text-gray-700 hover:text-blue-600 transition"
+                  className="block px-2 py-1 text-gray-700 hover:text-purple-600 transition"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Account
                 </Link>
+              </li>
+              {/* Mobile Currency Selector */}
+              <li className="px-2 py-1">
+                <div className="text-gray-700 mb-1">Currency:</div>
+                <CurrencySelector />
               </li>
             </ul>
           </div>

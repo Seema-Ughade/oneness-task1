@@ -1,12 +1,14 @@
+import { configureStore } from "@reduxjs/toolkit";
+import cartReducer from "./slices/cartSlice";
+import currencyReducer from "./slices/currencySlice"
 
-import { configureStore } from "@reduxjs/toolkit"
-import cartReducer from "./slices/cartSlice"
-
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     cart: cartReducer,
-  },
-  // Enable Redux DevTools in development
-  devTools: process.env.NODE_ENV !== "production",
-})
+    currency: currencyReducer,
 
+  },
+  devTools: process.env.NODE_ENV !== "production",
+});
+
+export default store; // ✅ This fixes the error

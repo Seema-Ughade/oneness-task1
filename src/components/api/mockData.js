@@ -28,7 +28,7 @@ export const mockProducts = [
       id: 4,
       name: "Coffee Maker",
       price: 59.99,
-      image: "https://images.philips.com/is/image/PhilipsConsumer/HD7434_20-IMS-en_IN?$jpglarge$&wid=1250",
+      image: "https://wallpapercrafter.com/th800/254228-espresso-espresso-machine-coffee-and-caffeine-hd.jpg",
       category: "Home",
       description: "Brew delicious coffee with this easy-to-use coffee maker.",
     },

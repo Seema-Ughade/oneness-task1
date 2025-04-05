@@ -1,93 +1,223 @@
 
-import { useCart } from "./contexts/CartContext"
+// // import { useDispatch, useSelector } from "react-redux"
+// // import { FaTrash, FaMinus, FaPlus } from "react-icons/fa"
+// // import { removeFromCart, updateQuantity } from "../slices/cartSlice"
+// // import { selectCurrency, formatPrice, convertPrice } from "../slices/currencySlice"
+
+// // const CartItem = ({ item }) => {
+// //   const dispatch = useDispatch()
+// //   const selectedCurrency = useSelector(selectCurrency)
+
+// //   const handleRemove = () => {
+// //     dispatch(removeFromCart(item.id))
+// //   }
+
+// //   const handleIncreaseQuantity = () => {
+// //     dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }))
+// //   }
+
+// //   const handleDecreaseQuantity = () => {
+// //     if (item.quantity > 1) {
+// //       dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }))
+// //     } else {
+// //       dispatch(removeFromCart(item.id))
+// //     }
+// //   }
+
+// //   // Format prices using Redux currency utilities
+// //   const itemPrice = formatPrice(convertPrice(item.price, selectedCurrency), selectedCurrency)
+// //   const itemTotal = formatPrice(convertPrice(item.price * item.quantity, selectedCurrency), selectedCurrency)
+
+// //   return (
+// //     <div className="flex items-center py-4 border-b border-gray-200">
+// //       <div className="w-20 h-20 flex-shrink-0 overflow-hidden rounded-md">
+// //         <img src={item.image || "/placeholder.svg"} alt={item.name} className="w-full h-full object-cover" />
+// //       </div>
+// //       <div className="ml-4 flex-1">
+// //         <h3 className="text-lg font-medium text-gray-800">{item.name}</h3>
+// //         <p className="text-sm text-gray-500">{item.description}</p>
+// //         <div className="flex items-center justify-between mt-2">
+// //           <div className="flex items-center border rounded-md">
+// //             <button onClick={handleDecreaseQuantity} className="px-2 py-1 text-gray-600 hover:text-gray-800">
+// //               <FaMinus className="w-3 h-3" />
+// //             </button>
+// //             <span className="px-2 py-1 text-gray-800">{item.quantity}</span>
+// //             <button onClick={handleIncreaseQuantity} className="px-2 py-1 text-gray-600 hover:text-gray-800">
+// //               <FaPlus className="w-3 h-3" />
+// //             </button>
+// //           </div>
+// //           <div className="flex items-center">
+// //             <span className="text-lg font-medium text-gray-800 mr-4">{itemTotal}</span>
+// //             <button onClick={handleRemove} className="text-red-500 hover:text-red-700">
+// //               <FaTrash />
+// //             </button>
+// //           </div>
+// //         </div>
+// //       </div>
+// //     </div>
+// //   )
+// // }
+
+// // export default CartItem
+
+// import { useDispatch, useSelector } from "react-redux"
+// import { FaTrash, FaMinus, FaPlus } from "react-icons/fa"
+// import { removeFromCart, updateQuantity } from "../slices/cartSlice"
+// import { selectCurrency, formatPrice, convertPrice } from "../slices/currencySlice"
+
+// const CartItem = ({ item }) => {
+//   const dispatch = useDispatch()
+//   const selectedCurrency = useSelector(selectCurrency)
+
+//   const handleRemove = () => {
+//     dispatch(removeFromCart(item.id))
+//   }
+
+//   const handleIncreaseQuantity = () => {
+//     dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }))
+//   }
+
+//   const handleDecreaseQuantity = () => {
+//     if (item.quantity > 1) {
+//       dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }))
+//     } else {
+//       dispatch(removeFromCart(item.id))
+//     }
+//   }
+
+//   const itemPrice = formatPrice(convertPrice(item.price, selectedCurrency), selectedCurrency)
+//   const itemTotal = formatPrice(convertPrice(item.price * item.quantity, selectedCurrency), selectedCurrency)
+
+//   return (
+//     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 py-4 border-b border-gray-200">
+//       {/* Product Image */}
+//       <div className="w-full sm:w-24 h-24 flex-shrink-0 overflow-hidden rounded-md">
+//         <img
+//           src={item.image || "/placeholder.svg"}
+//           alt={item.name}
+//           className="w-full h-full object-cover"
+//         />
+//       </div>
+
+//       {/* Product Info */}
+//       <div className="flex-1 w-full">
+//         <h3 className="text-base sm:text-lg font-medium text-gray-800">{item.name}</h3>
+//         <p className="text-sm text-gray-500 line-clamp-2">{item.description}</p>
+
+//         {/* Quantity & Price Actions */}
+//         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mt-3 gap-4">
+//           {/* Quantity Controls */}
+//           <div className="flex items-center border rounded-md">
+//             <button
+//               onClick={handleDecreaseQuantity}
+//               className="px-3 py-1 text-gray-600 hover:text-gray-800"
+//             >
+//               <FaMinus className="w-3 h-3" />
+//             </button>
+//             <span className="px-3 py-1 text-gray-800 font-medium">{item.quantity}</span>
+//             <button
+//               onClick={handleIncreaseQuantity}
+//               className="px-3 py-1 text-gray-600 hover:text-gray-800"
+//             >
+//               <FaPlus className="w-3 h-3" />
+//             </button>
+//           </div>
+
+//           {/* Price & Remove Button */}
+//           <div className="flex items-center justify-between w-full sm:w-auto">
+//             <span className="text-base sm:text-lg font-semibold text-gray-800 mr-4">{itemTotal}</span>
+//             <button
+//               onClick={handleRemove}
+//               className="text-red-500 hover:text-red-700 transition"
+//               title="Remove Item"
+//             >
+//               <FaTrash />
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default CartItem
+import { useDispatch, useSelector } from "react-redux";
+import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
+import { removeFromCart, updateQuantity } from "../slices/cartSlice";
+import { selectCurrency, formatPrice, convertPrice } from "../slices/currencySlice";
 
 const CartItem = ({ item }) => {
-  const { updateCartItemQuantity, removeFromCart } = useCart()
-
-  const handleQuantityChange = (newQuantity) => {
-    if (newQuantity < 1) return
-    updateCartItemQuantity(item.id, newQuantity)
-  }
+  const dispatch = useDispatch();
+  const selectedCurrency = useSelector(selectCurrency);
 
   const handleRemove = () => {
-    removeFromCart(item.id)
-  }
+    dispatch(removeFromCart(item.id));
+  };
+
+  const handleIncreaseQuantity = () => {
+    dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }));
+  };
+
+  const handleDecreaseQuantity = () => {
+    if (item.quantity > 1) {
+      dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }));
+    } else {
+      dispatch(removeFromCart(item.id));
+    }
+  };
+
+  const itemPrice = formatPrice(convertPrice(item.price, selectedCurrency), selectedCurrency);
+  const itemTotal = formatPrice(convertPrice(item.price * item.quantity, selectedCurrency), selectedCurrency);
 
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center py-4 border-b last:border-b-0 gap-4">
-      <div className="relative h-20 w-20 rounded-md overflow-hidden bg-gray-100 flex-shrink-0">
-        <img src={item.image || "/placeholder.svg"} alt={item.name} className="w-full h-full object-cover" />
+    <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 py-4 border-b border-gray-200">
+      <div className="w-full sm:w-24 h-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-300 bg-white">
+        <img
+          src={item.image || "/placeholder.svg"}
+          alt={item.name}
+          className="w-full h-full object-cover"
+        />
       </div>
 
-      <div className="flex-grow">
-        <h3 className="font-medium text-gray-800">{item.name}</h3>
-        <p className="text-gray-500 text-sm">${item.price.toFixed(2)}</p>
-      </div>
+      <div className="flex-1 w-full">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+          <div className="w-full sm:w-2/3">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-800">{item.name}</h3>
+            <p className="text-sm text-gray-500 mt-1 line-clamp-2">{item.description}</p>
+            <span className="text-sm text-gray-600 mt-2 block">{itemPrice}</span>
+          </div>
 
-      <div className="flex items-center space-x-1 border rounded-md">
-        <button
-          onClick={() => handleQuantityChange(item.quantity - 1)}
-          className="p-1.5 rounded-l-md hover:bg-gray-100 text-gray-600"
-          aria-label="Decrease quantity"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-          </svg>
-        </button>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mt-3 sm:mt-0">
+            <div className="flex items-center border rounded-md">
+              <button
+                onClick={handleDecreaseQuantity}
+                className="px-3 py-2 text-gray-600 hover:text-gray-900"
+              >
+                <FaMinus className="w-3 h-3" />
+              </button>
+              <span className="px-4 py-2 text-gray-800">{item.quantity}</span>
+              <button
+                onClick={handleIncreaseQuantity}
+                className="px-3 py-2 text-gray-600 hover:text-gray-900"
+              >
+                <FaPlus className="w-3 h-3" />
+              </button>
+            </div>
 
-        <span className="w-8 text-center text-sm">{item.quantity}</span>
-
-        <button
-          onClick={() => handleQuantityChange(item.quantity + 1)}
-          className="p-1.5 rounded-r-md hover:bg-gray-100 text-gray-600"
-          aria-label="Increase quantity"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-          </svg>
-        </button>
-      </div>
-
-      <div className="text-right sm:ml-4 w-full sm:w-auto flex justify-between sm:block">
-        <p className="font-medium">${(item.price * item.quantity).toFixed(2)}</p>
-
-        <button
-          onClick={handleRemove}
-          className="text-red-500 hover:text-red-700 text-sm flex items-center mt-1"
-          aria-label="Remove item"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4 mr-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-            />
-          </svg>
-          <span className="hidden sm:inline">Remove</span>
-        </button>
+            <div className="flex items-center justify-between w-full sm:w-auto">
+              <span className="text-lg font-semibold text-gray-900">{itemTotal}</span>
+              <button
+                onClick={handleRemove}
+                className="text-red-500 hover:text-red-700 ml-4 sm:ml-6"
+              >
+                <FaTrash className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CartItem
-
+export default CartItem;

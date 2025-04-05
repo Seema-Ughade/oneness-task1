@@ -1,37 +1,42 @@
 
-
-import { useState } from "react"
-import { useCart } from "./contexts/CartContext"
-import { useNotification } from "./contexts/NotificationContext"
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../slices/cartSlice";
+import { selectCurrency, formatPrice, convertPrice } from "../slices/currencySlice";
+import { useNotification } from "./contexts/NotificationContext";
 
 const ProductCard = ({ product }) => {
-  const [isAdding, setIsAdding] = useState(false)
-  const [isAdded, setIsAdded] = useState(false)
-  const { addToCart } = useCart()
-  const { addNotification } = useNotification()
+  const [isAdding, setIsAdding] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
+  const dispatch = useDispatch();
+  const selectedCurrency = useSelector(selectCurrency);
+  const { addNotification } = useNotification(); // Add this line to use the notification context
 
   const handleAddToCart = () => {
-    setIsAdding(true)
+    setIsAdding(true);
 
     setTimeout(() => {
-      addToCart({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        quantity: 1,
-      })
+      // Add to cart using Redux
+      dispatch(addToCart({ ...product, quantity: 1 }));
+      
+      // Show notification using Context
+      addNotification(
+        "Added to Cart", 
+        `${product.name} has been added to your cart.`, 
+        "success"
+      );
 
-      addNotification("Added to Cart", `${product.name} has been added to your cart.`, "success")
-
-      setIsAdding(false)
-      setIsAdded(true)
+      setIsAdding(false);
+      setIsAdded(true);
 
       setTimeout(() => {
-        setIsAdded(false)
-      }, 2000)
-    }, 500)
-  }
+        setIsAdded(false);
+      }, 2000);
+    }, 500);
+  };
+
+  // Format the price with the selected currency
+  const formattedPrice = formatPrice(convertPrice(product.price, selectedCurrency), selectedCurrency);
 
   return (
     <div className="bg-gradient-to-r from-orange-50 to-purple-100 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group border border-gray-200 p-4">
@@ -87,7 +92,7 @@ const ProductCard = ({ product }) => {
         <p className="text-gray-700 text-sm mb-2">{product.category}</p>
 
         <div className="flex items-center justify-between mt-2">
-          <span className="font-bold text-gray-900">${product.price.toFixed(2)}</span>
+          <span className="font-bold text-gray-900">{formattedPrice}</span>
 
           <button
             onClick={handleAddToCart}
@@ -101,7 +106,7 @@ const ProductCard = ({ product }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;

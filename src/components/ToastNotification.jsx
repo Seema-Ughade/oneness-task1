@@ -1,5 +1,5 @@
 
-import { useNotification } from "./contexts/NotificationContext"
+import { useNotification } from "../components/contexts/NotificationContext"
 
 const ToastNotification = () => {
   const { notifications, dismissNotification } = useNotification()
@@ -16,7 +16,7 @@ const ToastNotification = () => {
               ? "bg-green-50 border-green-500 text-green-800"
               : notification.type === "error"
                 ? "bg-red-50 border-red-500 text-red-800"
-                : "bg-blue-50 border-blue-500 text-blue-800"
+                : "bg-purple-50 border-purple-500 text-purple-800"
           }`}
         >
           <div
@@ -25,7 +25,7 @@ const ToastNotification = () => {
                 ? "bg-green-100"
                 : notification.type === "error"
                   ? "bg-red-100"
-                  : "bg-blue-100"
+                  : "bg-purple-100"
             }`}
           >
             {notification.type === "success" ? (
@@ -57,7 +57,7 @@ const ToastNotification = () => {
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 text-blue-600"
+                className="h-4 w-4 text-purple-600"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >

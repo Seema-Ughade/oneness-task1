@@ -1,11 +1,14 @@
 
 import { useState } from "react"
+import { useSelector } from "react-redux"
+import { selectCurrency, formatPrice, convertPrice } from "../slices/currencySlice"
 import { useNotification } from "./contexts/NotificationContext"
-import api from "../components/api"
+import api from "./api"
 
 const OrderSummary = ({ items, totalAmount, discount, onApplyCoupon }) => {
   const [couponCode, setCouponCode] = useState("")
   const [loading, setLoading] = useState(false)
+  const selectedCurrency = useSelector(selectCurrency)
   const { addNotification } = useNotification()
 
   const itemCount = items.reduce((total, item) => total + item.quantity, 0)
@@ -13,6 +16,13 @@ const OrderSummary = ({ items, totalAmount, discount, onApplyCoupon }) => {
   const discountAmount = discount > 0 ? (totalAmount * discount) / 100 : 0
   const tax = (totalAmount - discountAmount) * 0.07 // 7% tax
   const finalTotal = totalAmount + shippingCost + tax - discountAmount
+
+  // Convert all prices to the selected currency
+  const convertedTotalAmount = convertPrice(totalAmount, selectedCurrency)
+  const convertedShipping = shippingCost === 0 ? 0 : convertPrice(shippingCost, selectedCurrency)
+  const convertedDiscount = convertPrice(discountAmount, selectedCurrency)
+  const convertedTax = convertPrice(tax, selectedCurrency)
+  const convertedFinalTotal = convertPrice(finalTotal, selectedCurrency)
 
   const handleApplyCoupon = async () => {
     if (!couponCode) return
@@ -36,7 +46,7 @@ const OrderSummary = ({ items, totalAmount, discount, onApplyCoupon }) => {
       <div className="space-y-3 mb-6">
         <div className="flex justify-between">
           <span className="text-gray-600">Subtotal ({itemCount} items)</span>
-          <span className="font-medium">${totalAmount.toFixed(2)}</span>
+          <span className="font-medium">{formatPrice(convertedTotalAmount, selectedCurrency)}</span>
         </div>
 
         {discount > 0 && (
@@ -58,26 +68,30 @@ const OrderSummary = ({ items, totalAmount, discount, onApplyCoupon }) => {
               </svg>
               Discount ({discount}%)
             </span>
-            <span>-${discountAmount.toFixed(2)}</span>
+            <span>-{formatPrice(convertedDiscount, selectedCurrency)}</span>
           </div>
         )}
 
         <div className="flex justify-between">
           <span className="text-gray-600">Shipping</span>
           <span className="font-medium">
-            {shippingCost === 0 ? <span className="text-green-600">Free</span> : `$${shippingCost.toFixed(2)}`}
+            {shippingCost === 0 ? (
+              <span className="text-green-600">Free</span>
+            ) : (
+              formatPrice(convertedShipping, selectedCurrency)
+            )}
           </span>
         </div>
 
         <div className="flex justify-between">
           <span className="text-gray-600">Tax (7%)</span>
-          <span className="font-medium">${tax.toFixed(2)}</span>
+          <span className="font-medium">{formatPrice(convertedTax, selectedCurrency)}</span>
         </div>
 
         <div className="border-t pt-3 mt-3">
           <div className="flex justify-between font-semibold text-lg">
             <span>Total</span>
-            <span>${finalTotal.toFixed(2)}</span>
+            <span>{formatPrice(convertedFinalTotal, selectedCurrency)}</span>
           </div>
         </div>
       </div>
@@ -90,7 +104,7 @@ const OrderSummary = ({ items, totalAmount, discount, onApplyCoupon }) => {
             value={couponCode}
             onChange={(e) => setCouponCode(e.target.value)}
             placeholder="Enter coupon code"
-            className="flex-grow border border-gray-300 rounded-l-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-grow border border-gray-300 rounded-l-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
           <button
             onClick={handleApplyCoupon}
@@ -115,7 +129,9 @@ const OrderSummary = ({ items, totalAmount, discount, onApplyCoupon }) => {
               <span className="text-gray-600">
                 {item.name} <span className="text-gray-400">x{item.quantity}</span>
               </span>
-              <span className="font-medium">${(item.price * item.quantity).toFixed(2)}</span>
+              <span className="font-medium">
+                {formatPrice(convertPrice(item.price * item.quantity, selectedCurrency), selectedCurrency)}
+              </span>
             </div>
           ))}
         </div>

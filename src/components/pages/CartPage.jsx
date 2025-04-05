@@ -1,10 +1,11 @@
+
 import { Link } from "react-router-dom"
-import { useCart } from "../contexts/CartContext"
+import { useSelector } from "react-redux"
 import CartItem from "../CartItem"
 import CartSummary from "../CartSummary"
 
 const CartPage = () => {
-  const { items } = useCart()
+  const items = useSelector((state) => state.cart.items)
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -31,7 +32,7 @@ const CartPage = () => {
                 </svg>
                 <h2 className="text-2xl font-semibold text-gray-700">Your cart is empty</h2>
                 <p className="text-gray-500 mt-2 mb-6">Looks like you haven't added anything to your cart yet.</p>
-                <Link to="/" className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition">
+                <Link to="/" className="bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 transition">
                   Continue Shopping
                 </Link>
               </div>

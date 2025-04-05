@@ -1,4 +1,5 @@
 
+
 import { useState } from "react"
 
 const CheckoutForm = ({ onSubmit, loading }) => {
@@ -64,7 +65,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
         <h2 className="text-xl font-semibold flex items-center text-gray-800">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mr-2 text-blue-600"
+            className="h-5 w-5 mr-2 text-purple-600"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -87,7 +88,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                 errors.firstName ? "border-red-500" : "border-gray-300"
               }`}
             />
@@ -101,7 +102,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                 errors.lastName ? "border-red-500" : "border-gray-300"
               }`}
             />
@@ -115,7 +116,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                 errors.email ? "border-red-500" : "border-gray-300"
               }`}
             />
@@ -128,7 +129,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
         <h2 className="text-xl font-semibold flex items-center text-gray-800">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mr-2 text-blue-600"
+            className="h-5 w-5 mr-2 text-purple-600"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -152,7 +153,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                 errors.address ? "border-red-500" : "border-gray-300"
               }`}
             />
@@ -166,7 +167,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
               name="city"
               value={formData.city}
               onChange={handleChange}
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                 errors.city ? "border-red-500" : "border-gray-300"
               }`}
             />
@@ -181,7 +182,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
                 name="state"
                 value={formData.state}
                 onChange={handleChange}
-                className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                   errors.state ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -195,7 +196,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
                 name="zipCode"
                 value={formData.zipCode}
                 onChange={handleChange}
-                className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                   errors.zipCode ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -209,7 +210,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
         <h2 className="text-xl font-semibold flex items-center text-gray-800">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mr-2 text-blue-600"
+            className="h-5 w-5 mr-2 text-purple-600"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -233,7 +234,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
               value={formData.cardNumber}
               onChange={handleChange}
               placeholder="1234 5678 9012 3456"
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring--500 ${
                 errors.cardNumber ? "border-red-500" : "border-gray-300"
               }`}
             />
@@ -247,7 +248,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
               name="cardName"
               value={formData.cardName}
               onChange={handleChange}
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                 errors.cardName ? "border-red-500" : "border-gray-300"
               }`}
             />
@@ -262,7 +263,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
               value={formData.expiryDate}
               onChange={handleChange}
               placeholder="MM/YY"
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                 errors.expiryDate ? "border-red-500" : "border-gray-300"
               }`}
             />
@@ -277,7 +278,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
               value={formData.cvv}
               onChange={handleChange}
               placeholder="123"
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                 errors.cvv ? "border-red-500" : "border-gray-300"
               }`}
             />
@@ -309,7 +310,7 @@ const CheckoutForm = ({ onSubmit, loading }) => {
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition flex items-center justify-center"
+        className="w-full bg-purple-600 text-white py-3 px-4 rounded-md hover:bg-purple-700 transition flex items-center justify-center"
       >
         {loading ? (
           <>
@@ -325,4 +326,3 @@ const CheckoutForm = ({ onSubmit, loading }) => {
 }
 
 export default CheckoutForm
-

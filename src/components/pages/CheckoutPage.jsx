@@ -1,7 +1,9 @@
 
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { useCart } from "../contexts/CartContext"
+import { useDispatch, useSelector } from "react-redux"
+import { clearCart } from "../../slices/cartSlice"
+import { selectCurrency } from "../../slices/currencySlice"
 import { useNotification } from "../contexts/NotificationContext"
 import CheckoutForm from "../CheckoutForm"
 import OrderSummary from "../OrderSummary"
@@ -15,9 +17,14 @@ const CheckoutPage = () => {
   const [couponCode, setCouponCode] = useState("")
   const [discount, setDiscount] = useState(0)
 
-  const { items, totalAmount, clearCart } = useCart()
+  const dispatch = useDispatch()
+  const items = useSelector((state) => state.cart.items)
+  const selectedCurrency = useSelector(selectCurrency)
   const { addNotification } = useNotification()
   const navigate = useNavigate()
+
+  // Calculate total amount
+  const totalAmount = items.reduce((total, item) => total + item.price * item.quantity, 0)
 
   const handleCouponApply = (discount) => {
     setDiscount(discount)
@@ -47,6 +54,7 @@ const CheckoutPage = () => {
         totalAmount: discount > 0 ? totalAmount - (totalAmount * discount) / 100 : totalAmount,
         paymentDetails,
         couponCode: couponCode || null,
+        currency: selectedCurrency,
       }
 
       const result = await api.processPayment(orderData)
@@ -55,7 +63,7 @@ const CheckoutPage = () => {
       setProgress(100)
 
       // Clear cart after successful payment
-      clearCart()
+      dispatch(clearCart())
 
       // Show success notification
       addNotification("Order Confirmed", "Your payment was successful!", "success")
